@@ -1,91 +1,56 @@
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import styles from './page.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
+    <main className="min-h-screen w-screen bg-gray-100 text-[#2d333f]">
+      <main className="m-auto max-w-screen-2xl bg-white">
+        {/* NAVBAR */}
+        <nav className="flex justify-between bg-white p-2">
+          <a href="" className="text-2xl font-bold text-gray-700">
+            OpenTable
           </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+          <div>
+            <div className="flex gap-2">
+              <button className="rounded  bg-[#237F9E] p-1 px-4 text-white">
+                Sign up
+              </button>
+              <button className="rounded border p-1 px-4">Sign in</button>
+            </div>
+          </div>
+        </nav>
+        <main>
+          {/* HEADER */}
+          <header className="h-64 bg-gradient-to-r from-[#122048] to-[#646C87] px-4 py-16">
+            <h1 className="mb-4 text-center text-5xl font-bold text-white">
+              Find your table for any occasion
+            </h1>
+            <div className="m-auto flex h-12 justify-center gap-4 text-left">
+              <input className="w-[450px] rounded p-2 text-lg" type="text" />
+              <button className="rounded bg-[#da3743] px-11 font-bold text-white">
+                Let's go
+              </button>
+            </div>
+          </header>
+          {/* CARDS */}
+          <ul className="mt-10 flex flex-wrap px-36 py-3">
+            <li>
+              {/* CARD */}
+              <div className="h-72 w-64 cursor-pointer overflow-hidden rounded border">
+                <img
+                  className="h-36"
+                  src="https://resizer.otstatic.com/v2/photos/wide-huge/2/28112008.jpg"
+                  alt=""
+                />
+                <div className="p-1">
+                  <h3 className="mb-2 text-lg font-bold">animar</h3>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </main>
+      </main>
     </main>
   )
 }
