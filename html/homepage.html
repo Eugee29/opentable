@@ -1,0 +1,50 @@
+
+    <main>
+      {/* HEADER */}
+      <header
+        className="h-64 bg-gradient-to-r from-[#122048] to-[#646C87] px-4 py-16"
+      >
+        <h1 className="mb-4 text-center text-5xl font-bold text-white">
+          Find your table for any occasion
+        </h1>
+        {/* SEARCH BAR */}
+        <div className="m-auto flex h-12 justify-center gap-4 text-left">
+          <input className="w-[450px] rounded p-2 text-lg" type="text" />
+          <button
+            className="rounded bg-[#da3743] px-11 font-bold text-white transition-all duration-300 hover:brightness-75"
+          >
+            Let's go
+          </button>
+        </div>
+      </header>
+      {/* CARDS */}
+      <ul className="mt-10 flex flex-wrap px-36 py-3">
+        <li>
+          {/* CARD */}
+          <div
+            className="h-72 w-64 cursor-pointer overflow-hidden rounded border"
+          >
+            <img
+              className="h-36"
+              src="https://resizer.otstatic.com/v2/photos/wide-huge/2/28112008.jpg"
+              alt=""
+            />
+            <div className="flex flex-col p-2">
+              <h3 className="mb-1 text-lg font-bold">Super Restaurant</h3>
+              <div className="mb-1 flex items-start text-sm">
+                <div className="mb-2 flex">*****</div>
+                <p className="ml-2">77 reviews</p>
+              </div>
+              <div className="mb-2 flex text-sm font-light capitalize">
+                <p className="mr-3">Mexican</p>
+                <p className="mr-3">$$$$</p>
+                <p>Toronto</p>
+              </div>
+              <p className="mt-1 text-sm font-medium">Booked 3 times today</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </main>
+  </main>
+</main>

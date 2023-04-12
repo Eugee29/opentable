@@ -1,0 +1,77 @@
+<main className="min-h-screen bg-[#F7F7F7] text-[#2d333f]">
+  <main className="m-auto max-w-[100rem] bg-white">
+    {/* NAVBAR */}
+    <nav className="flex justify-between p-2">
+      <a href="" className="text-2xl font-bold text-gray-700"> OpenTable </a>
+      <div className="flex gap-2">
+        <button className="rounded bg-[#237F9E] p-1 px-4 text-white">
+          Sign up
+        </button>
+        <button className="rounded border p-1 px-4">Sign in</button>
+      </div>
+    </nav>
+    <div className="h-screen border-t">
+      <div className="m-auto w-3/5 py-9">
+        {/* HEADER */}
+        <header className="mb-10">
+          <h3 className="mb-4 text-lg font-bold">You're almost done!</h3>
+          <div className="flex">
+            <img
+              className="mr-4 h-16 w-16 rounded"
+              src="https://resizer.otstatic.com/v2/photos/legacy/2/26773516.png"
+              alt=""
+            />
+            <div className="flex flex-col">
+              <h1 className="mb-1 flex-1 text-2xl font-bold">
+                Chloelys at The Hilton Tel-Aviv
+              </h1>
+              <ul className="flex gap-4">
+                <li className="font-medium">Tues, 22, 2023</li>
+                <li className="font-medium">7:30 PM</li>
+                <li className="font-medium">3 people</li>
+              </ul>
+            </div>
+          </div>
+        </header>
+        {/* FORM */}
+        <form className="flex w-[660px] flex-wrap justify-between">
+          <input
+            className="mb-4 w-80 rounded border p-3"
+            type="text"
+            placeholder="First name"
+          />
+          <input
+            className="mb-4 w-80 rounded border p-3"
+            type="text"
+            placeholder="Last name"
+          />
+          <input
+            className="mb-4 w-80 rounded border p-3"
+            type="text"
+            placeholder="Phone number"
+          />
+          <input
+            className="mb-4 w-80 rounded border p-3"
+            type="email"
+            placeholder="Email"
+          />
+          <input
+            className="mb-4 w-80 rounded border p-3"
+            type="text"
+            placeholder="Select an occasion (optional)"
+          />
+          <textarea
+            className="mb-4 w-80 rounded border p-3"
+            placeholder="Add a special request (optional)"
+            rows="{1}"
+          />
+          <button
+            className="h-[50px] w-full rounded bg-[#da3743] font-bold text-white transition-colors duration-300 hover:bg-[#b8222d]"
+          >
+            Complete reservation
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+</main>

@@ -1,0 +1,51 @@
+<main className="min-h-screen bg-[#F7F7F7] text-[#2d333f]">
+  <main className="m-auto max-w-[100rem] bg-white">
+    {/* NAVBAR */}
+    <nav className="flex justify-between p-2">
+      <a href="" className="text-2xl font-bold text-gray-700"> OpenTable </a>
+      <div className="flex gap-2">
+        <button className="rounded bg-[#237F9E] p-1 px-4 text-white">
+          Sign up
+        </button>
+        <button className="rounded border p-1 px-4">Sign in</button>
+      </div>
+    </nav>
+    {/* HEADER */}
+    <header className="h-96 overflow-hidden">
+      <div
+        className="flex h-full items-center justify-center bg-gradient-to-r from-[#122048] to-[#646C87] bg-center"
+      >
+        <h1 className="text-shadow text-center text-7xl capitalize text-white">
+          Super Restaurant (Toronto)
+        </h1>
+      </div>
+    </header>
+    <div className="m-auto -mt-[53px] flex items-start justify-center gap-8 ">
+      <section className="w-[40rem] min-w-[40rem] rounded bg-white px-4 shadow">
+        {/* RESTAURANT NAVBAR */}
+        <nav className="flex border-b py-4 text-sm font-medium">
+          <a className="mr-7" href=""> Overview </a>
+          <a className="mr-7" href=""> Menu </a>
+        </nav>
+        {/* MENU */}
+        <main className="mt-5 bg-white">
+          <div>
+            <div className="mb-1 mt-4 pb-1">
+              <h1 className="text-2xl font-bold">Menu</h1>
+            </div>
+            <div className="flex flex-wrap justify-between">
+              {/* MENU CARD */}
+              <div className="mb-3 w-[49%] rounded border p-3">
+                <h3 className="text-lg font-bold">Surf and Turf</h3>
+                <p className="mt-1 text-sm font-light">
+                  A well done steak with lobster and rice.
+                </p>
+                <p className="mt-7">80.00$</p>
+              </div>
+            </div>
+          </div>
+        </main>
+      </section>
+    </div>
+  </main>
+</main>

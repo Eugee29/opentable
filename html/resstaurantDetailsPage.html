@@ -1,0 +1,154 @@
+<main className="min-h-screen bg-gray-100 text-[#2d333f]">
+  <main className="m-auto  bg-white">
+    {/* NAVBAR */}
+    <nav className="flex justify-between bg-white p-2">
+      <a href="" className="text-2xl font-bold text-gray-700"> OpenTable </a>
+      <div className="flex gap-2">
+        <button className="rounded bg-[#237F9E] p-1 px-4 text-white">
+          Sign up
+        </button>
+        <button className="rounded border p-1 px-4">Sign in</button>
+      </div>
+    </nav>
+    {/* HEADER */}
+    <header className="h-96 overflow-hidden">
+      <div
+        className="flex h-full items-center justify-center bg-gradient-to-r from-[#122048] to-[#646C87]"
+      >
+        <h1 className="text-shadow text-center text-7xl capitalize text-white">
+          Super Restaurant (Toronto)
+        </h1>
+      </div>
+    </header>
+    <div className="m-auto -mt-[53px] flex items-start justify-center gap-8">
+      {/* DESCRIPTION SECTION */}
+      <section className="w-[40rem] min-w-[40rem] rounded bg-white px-4 shadow">
+        {/* RESTAURANT NAVBAR */}
+        <nav className="flex border-b py-4 text-sm font-medium">
+          <a className="mr-7" href=""> Overview </a>
+          <a className="mr-7" href=""> Menu </a>
+        </nav>
+        {/* TITLE */}
+        <h1 className="border-b py-8 text-5xl font-bold">Super Restaurant</h1>
+        {/* RATINGS */}
+        <div className="flex items-end">
+          <div className="mt-2 flex items-center">
+            <p>*****</p>
+            <p className="ml-3">4.9</p>
+          </div>
+          <div>
+            <p className="ml-4">600 reviews</p>
+          </div>
+        </div>
+        {/* DESCRIPTION */}
+        <div className="mt-8">
+          <p>
+            Nomi provides an exclusive and intimate dining experience of the
+            highest caliber, using only the finest ingredients.
+          </p>
+        </div>
+        {/* IMAGES */}
+        <div>
+          <h1 className="mb-7 mt-10 border-b pb-5 text-2xl font-bold">
+            5 Photos
+          </h1>
+          <div className="flex flex-wrap">
+            <img
+              className="mb-1 mr-1 aspect-[3/2] w-44"
+              src="https://resizer.otstatic.com/v2/photos/xlarge/1/25899315.png"
+              alt=""
+            />
+            <img
+              className="mb-1 mr-1 aspect-[3/2] w-44"
+              src="https://resizer.otstatic.com/v2/photos/xlarge/1/25878773.png"
+              alt=""
+            />
+            <img
+              className="mb-1 mr-1 aspect-[3/2] w-44"
+              src="https://resizer.otstatic.com/v2/photos/xlarge/1/26335127.jpg"
+              alt=""
+            />
+            <img
+              className="mb-1 mr-1 aspect-[3/2] w-44"
+              src="https://resizer.otstatic.com/v2/photos/xlarge/26012699.jpg"
+              alt=""
+            />
+            <img
+              className="mb-1 mr-1 aspect-[3/2] w-44"
+              src="https://resizer.otstatic.com/v2/photos/xlarge/1/26246537.jpg"
+              alt=""
+            />
+          </div>
+        </div>
+        {/* REVIEWS */}
+        <div>
+          <h1 className="mb-7 mt-10 border-b pb-4 text-2xl font-bold">
+            What 100 people are saying
+          </h1>
+          <div>
+            {/* REVIEW CARD */}
+            <div className="mb-7 border-b pb-7">
+              <div className="flex">
+                <div className="flex w-1/6 flex-col items-center">
+                  <div
+                    className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-blue-400"
+                  >
+                    <h2 className="text-sm font-medium text-white">MJ</h2>
+                  </div>
+                  <p className="text-center text-sm font-medium">
+                    Micheal Jordan
+                  </p>
+                </div>
+                <div className="ml-10 w-5/6">
+                  <div className="flex items-center">
+                    <div className="mr-5 flex">*****</div>
+                  </div>
+                  <div className="mt-5">
+                    <p>
+                      Very cozy atmosphere, pleasant waiters and delicious food.
+                      Sea bass was perfect, wine list is pretty good with a
+                      great choice of local wines.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* RESERVATION CARD SECTION */}
+      <section className="sticky top-0 w-80 rounded bg-white p-3 shadow">
+        <h4 className="border-b pb-3 text-center text-lg font-bold">
+          Make a reservation
+        </h4>
+        <div className="my-3 flex flex-col">
+          <label className="text-sm font-medium" htmlFor=""> Party Size </label>
+          <select className="border-b py-3 font-light" name="" id="">
+            <option value="">1 person</option>
+            <option value="">2 person</option>
+          </select>
+        </div>
+        <div className="flex justify-between py-3 text-sm font-medium">
+          <div className="flex w-[48%] flex-col border-b">
+            <label htmlFor="">Date</label>
+            <input type="date" className="w-28 font-light" />
+          </div>
+          <div className="flex w-[48%] flex-col border-b">
+            <label htmlFor="">Time</label>
+            <select className="w-28 font-light">
+              <option value="">7:30 AM</option>
+              <option value="">9:30 AM</option>
+            </select>
+          </div>
+        </div>
+        <div className="mt-5">
+          <button
+            className="h-11 w-full rounded bg-[#da3743] px-4 font-bold text-white transition-colors duration-300 hover:bg-[#b8222d]"
+          >
+            Find a time
+          </button>
+        </div>
+      </section>
+    </div>
+  </main>
+</main>
