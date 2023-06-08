@@ -1,16 +1,17 @@
 import NavBar from '@/app/components/NavBar'
 import './globals.css'
+import { ReactNode } from 'react'
 
 export const metadata = {
   title: { default: 'OpenTable', template: '%s | OpenTable' },
   description: 'Book a restaurant',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+interface Props {
+  children: ReactNode
+}
+
+export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">
       <body>

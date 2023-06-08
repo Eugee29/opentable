@@ -1,24 +1,36 @@
-export default function RestaurantCard() {
+import Price from '@/app/components/Price'
+import { RestaurantCardType } from '@/app/page'
+import Link from 'next/link'
+
+interface Props {
+  restaurant: RestaurantCardType
+}
+
+export default function RestaurantCard({ restaurant }: Props) {
   return (
-    <div className="h-72 w-full cursor-pointer overflow-hidden rounded border">
-      <img
-        className="min-h-[132px] w-full"
-        src="https://resizer.otstatic.com/v2/photos/wide-huge/2/28112008.jpg"
-        alt=""
-      />
-      <div className="flex flex-col p-2">
-        <h3 className="mb-1 text-lg font-bold">Super Restaurant</h3>
-        <div className="mb-1 flex items-start text-sm">
-          <div className="mb-2 flex">*****</div>
-          <p className="ml-2">77 reviews</p>
+    <Link href={`/restaurant/${restaurant.slug}`}>
+      <div className="flex h-[19rem] w-[14.75rem] cursor-pointer flex-col overflow-hidden rounded-lg border">
+        <img
+          className="h-[132px] w-full"
+          src={restaurant.main_image}
+          alt={restaurant.name}
+        />
+        <div className="flex flex-grow flex-col p-2">
+          <h1 className="mb-1 truncate text-lg font-bold leading-none">
+            {restaurant.name}
+          </h1>
+          <div className="mb-1 flex items-start text-sm">
+            <div className="mb-2 flex">*****</div>
+            <p className="ml-2">77 reviews</p>
+          </div>
+          <div className="mb-2 flex text-sm font-light capitalize">
+            <span className="mr-3">{restaurant.cuisine.name}</span>
+            <Price className="mr-3" price={restaurant.price} />
+            <span>{restaurant.location.name}</span>
+          </div>
+          <span className="mt-1 text-sm font-medium">Booked 3 times today</span>
         </div>
-        <div className="mb-2 flex text-sm font-light capitalize">
-          <p className="mr-3">Mexican</p>
-          <p className="mr-3">$$$$</p>
-          <p>Toronto</p>
-        </div>
-        <p className="mt-1 text-sm font-medium">Booked 3 times today</p>
       </div>
-    </div>
+    </Link>
   )
 }

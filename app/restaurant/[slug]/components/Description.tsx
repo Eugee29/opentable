@@ -1,10 +1,11 @@
-export default function Description() {
+interface Props {
+  description: string
+}
+
+export default function Description({ description }: Props) {
   return (
     <div className="mt-8">
-      <p>
-        Nomi provides an exclusive and intimate dining experience of the highest
-        caliber, using only the finest ingredients.
-      </p>
+      <p>{description}</p>
     </div>
   )
 }
