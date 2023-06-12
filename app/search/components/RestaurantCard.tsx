@@ -1,8 +1,9 @@
+import Price from "@/app/components/Price";
+import { RestaurantCardType } from "@/app/page";
 import Link from "next/link";
-import { SearchRestaurantType } from "../page";
 
 interface Props {
-  restaurant: SearchRestaurantType;
+  restaurant: RestaurantCardType;
 }
 
 export default function RestaurantCard({ restaurant }: Props) {
@@ -23,14 +24,14 @@ export default function RestaurantCard({ restaurant }: Props) {
         </div>
         <div className="mb-9">
           <div className="flex text-sm">
-            <p className="mr-4">$$$</p>
-            <p className="mr-4">Mexican</p>
-            <p className="mr-4">Ottawa</p>
+            <Price className="mr-4" price={restaurant.price} />
+            <p className="mr-4 capitalize">{restaurant.cuisine.name}</p>
+            <p className="mr-4 capitalize">{restaurant.location.name}</p>
           </div>
         </div>
-        <div className="text-red-600">
-          <Link href="/restaurant/super-restaurant">View more information</Link>
-        </div>
+        <Link className="text-red-600" href={`/restaurant/${restaurant.slug}`}>
+          View more information
+        </Link>
       </div>
     </div>
   );

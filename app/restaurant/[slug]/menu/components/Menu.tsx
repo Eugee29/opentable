@@ -1,8 +1,8 @@
-import MenuCard from '@/app/restaurant/[slug]/menu/components/MenuCard'
-import { Item } from '@prisma/client'
+import MenuCard from "@/app/restaurant/[slug]/menu/components/MenuCard";
+import { Item } from "@prisma/client";
 
 interface Props {
-  menu: Item[]
+  menu: Item[];
 }
 
 export default function Menu({ menu }: Props) {
@@ -16,7 +16,7 @@ export default function Menu({ menu }: Props) {
         {menu.length ? (
           <ul className="grid grid-cols-2 gap-4">
             {menu.map((item) => (
-              <li className="inline">
+              <li className="inline" key={item.id}>
                 <MenuCard item={item} />
               </li>
             ))}
@@ -26,5 +26,5 @@ export default function Menu({ menu }: Props) {
         )}
       </div>
     </main>
-  )
+  );
 }

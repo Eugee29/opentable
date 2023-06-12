@@ -1,7 +1,8 @@
 import Header from "@/app/search/components/Header";
 import RestaurantCard from "@/app/search/components/RestaurantCard";
 import SearchSideBar from "@/app/search/components/SearchSideBar";
-import { Cuisine, PRICE, PrismaClient } from "@prisma/client";
+import { PRICE, PrismaClient } from "@prisma/client";
+import { RestaurantCardType } from "../page";
 
 export const metadata = {
   title: "Search",
@@ -9,51 +10,78 @@ export const metadata = {
 
 const prisma = new PrismaClient();
 
-export interface SearchRestaurantType {
-  id: string;
-  name: string;
-  main_image: string;
-  price: PRICE;
-  cuisine: Cuisine;
-  slug: string;
+interface searchParams {
+  location?: string;
+  cuisine?: string;
+  price?: PRICE;
 }
 
-const fetchRestaurantsByCity = async (
-  city: string
-): Promise<SearchRestaurantType[]> => {
+const fetchRestaurants = (
+  searchParams: searchParams
+): Promise<RestaurantCardType[]> => {
   const select = {
     id: true,
     name: true,
     main_image: true,
-    price: true,
     cuisine: true,
     slug: true,
+    location: true,
+    price: true,
   };
 
-  if (!city) return await prisma.restaurant.findMany({ select });
-  return await prisma.restaurant.findMany({
+  if (!searchParams.location) return prisma.restaurant.findMany({ select });
+
+  // const where: any = {};
+
+  // if (searchParams.location)
+  //   where.location = {
+  //     name: { equals: searchParams.location, mode: "insensitive" },
+  //   };
+
+  // if (searchParams.cuisine)
+  //   where.cuisine = {
+  //     name: { equals: searchParams.cuisine, mode: "insensitive" },
+  //   };
+
+  // if (searchParams.price) where.price = { equals: searchParams.price };
+
+  return prisma.restaurant.findMany({
     where: {
       location: {
-        name: city.toLocaleLowerCase(),
+        name: { equals: searchParams.location, mode: "insensitive" },
       },
+      cuisine: {
+        name: { equals: searchParams.cuisine, mode: "insensitive" },
+      },
+      price: { equals: searchParams.price },
     },
     select,
   });
 };
 
+const fetchLocations = () => {
+  return prisma.location.findMany();
+};
+
+const fetchCuisines = () => {
+  return prisma.cuisine.findMany();
+};
+
 interface Props {
-  searchParams: { city: string };
+  searchParams: searchParams;
 }
 
 export default async function Search({ searchParams }: Props) {
-  const restaurants = await fetchRestaurantsByCity(searchParams.city);
+  const restaurants = await fetchRestaurants(searchParams);
+  const locations = await fetchLocations();
+  const cuisines = await fetchCuisines();
 
   const renderRestaurants = () => {
     if (!restaurants.length) return <p>No restaurants found...</p>;
     return (
       <ul>
         {restaurants.map((restaurant) => (
-          <li className="border-b py-5">
+          <li className="border-b py-5" key={restaurant.id}>
             <RestaurantCard restaurant={restaurant} />
           </li>
         ))}
@@ -65,7 +93,11 @@ export default async function Search({ searchParams }: Props) {
     <>
       <Header />
       <div className="m-auto flex w-2/3 items-start gap-8 py-4">
-        <SearchSideBar />
+        <SearchSideBar
+          locations={locations}
+          cuisines={cuisines}
+          searchParams={searchParams}
+        />
         <div className="flex-grow">{renderRestaurants()}</div>
       </div>
     </>

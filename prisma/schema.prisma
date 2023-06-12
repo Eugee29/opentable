@@ -25,6 +25,7 @@ model Restaurant {
   location    Location @relation(fields: [location_id], references: [id])
   cuisine_id  String
   cuisine     Cuisine  @relation(fields: [cuisine_id], references: [id])
+  Review      Review[]
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 }
@@ -36,6 +37,32 @@ model Item {
   description   String
   restaurant_id String
   restaurant    Restaurant @relation(fields: [restaurant_id], references: [id])
+  created_at    DateTime   @default(now())
+  updated_at    DateTime   @updatedAt
+}
+
+model User {
+  id         String   @id @default(uuid())
+  first_name String
+  last_name  String
+  city       String
+  email      String
+  phone      String
+  review     Review[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Review {
+  id            String     @id @default(uuid())
+  first_name    String
+  last_name     String
+  text          String
+  rating        Float
+  restaurant_id String
+  restaurant    Restaurant @relation(fields: [restaurant_id], references: [id])
+  user_id       String
+  user          User       @relation(fields: [user_id], references: [id])
   created_at    DateTime   @default(now())
   updated_at    DateTime   @updatedAt
 }

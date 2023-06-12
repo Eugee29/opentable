@@ -1,33 +1,125 @@
-export default function SearchSideBar() {
+import { Cuisine, Location, PRICE } from "@prisma/client";
+import Link from "next/link";
+
+interface Props {
+  locations: Location[];
+  cuisines: Cuisine[];
+  searchParams: { location?: string; cuisine?: string; price?: PRICE };
+}
+
+export default function SearchSideBar({
+  locations,
+  cuisines,
+  searchParams,
+}: Props) {
+  const prices = [
+    {
+      price: PRICE.CHEAP,
+      label: "$",
+    },
+    {
+      price: PRICE.REGULAR,
+      label: "$$",
+    },
+    {
+      price: PRICE.EXPENSIVE,
+      label: "$$$",
+    },
+  ];
+
   return (
-    <div className="w-1/5">
+    <nav className="w-1/5">
       <div className="border-b pb-4">
         <h1 className="mb-2">Region</h1>
-        <p className="font-light">Toronto</p>
-        <p className="font-light">Ottawa</p>
-        <p className="font-light">Montreal</p>
-        <p className="font-light">Hamilton</p>
-        <p className="font-light">Kingston</p>
-        <p className="font-light">Niagara</p>
+        <ul>
+          {locations.map((location) => (
+            <li key={location.id}>
+              <Link
+                className={`font-light capitalize ${
+                  searchParams.location?.toLowerCase() ===
+                  location.name.toLowerCase()
+                    ? "text-red-600"
+                    : ""
+                }`}
+                href={{
+                  pathname: "/search",
+                  query: {
+                    ...searchParams,
+                    location:
+                      searchParams.location?.toLowerCase() ===
+                      location.name.toLowerCase()
+                        ? undefined
+                        : location.name,
+                  },
+                }}
+              >
+                {location.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
       <div className="mt-3 border-b pb-4">
         <h1 className="mb-2">Cuisine</h1>
-        <p className="font-light">Mexican</p>
-        <p className="font-light">Italian</p>
-        <p className="font-light">Chinese</p>
+        <ul>
+          {cuisines.map((cuisine) => (
+            <li key={cuisine.id}>
+              <Link
+                className={`font-light capitalize ${
+                  searchParams.cuisine?.toLowerCase() ===
+                  cuisine.name.toLowerCase()
+                    ? "text-red-600"
+                    : ""
+                }`}
+                href={{
+                  pathname: "/search",
+                  query: {
+                    ...searchParams,
+                    cuisine:
+                      searchParams.cuisine?.toLowerCase() ===
+                      cuisine.name.toLowerCase()
+                        ? undefined
+                        : cuisine.name,
+                  },
+                }}
+              >
+                {cuisine.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
       <div className="mt-3 pb-4">
         <h1 className="mb-2">Price</h1>
-        <div className="flex">
-          <button className="w-full rounded-l border p-2 font-light">$</button>
-          <button className="w-full border border-l-0 p-2 font-light">
-            $$
-          </button>
-          <button className="w-full rounded-r border border-l-0 p-2 font-light">
-            $$$
-          </button>
-        </div>
+        <ul className="flex">
+          {prices.map(({ price, label }) => (
+            <li
+              className={`flex-1 border text-center font-light first:rounded-l last:rounded-r ${
+                searchParams.price?.toLowerCase() === price.toLowerCase()
+                  ? "border-1 border-red-600 text-red-600"
+                  : "first:border-r-0 last:border-l-0"
+              }`}
+              key={price}
+            >
+              <Link
+                className="block p-2"
+                href={{
+                  pathname: "/search",
+                  query: {
+                    ...searchParams,
+                    price:
+                      searchParams.price?.toLowerCase() === price.toLowerCase()
+                        ? undefined
+                        : price,
+                  },
+                }}
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
-  )
+    </nav>
+  );
 }

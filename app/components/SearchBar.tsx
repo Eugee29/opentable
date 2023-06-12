@@ -9,7 +9,7 @@ export default function SearchBar() {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (ev) => {
     ev.preventDefault();
-    router.push(`/search?city=${location}`);
+    router.push(`/search?location=${location}`);
   };
 
   return (
