@@ -1,19 +1,20 @@
-import Description from '@/app/restaurant/[slug]/components/Description'
-import Images from '@/app/restaurant/[slug]/components/Images'
-import RestaurantNavBar from '@/app/restaurant/[slug]/components/NavBar'
-import Rating from '@/app/restaurant/[slug]/components/Rating'
-import Reviews from '@/app/restaurant/[slug]/components/Reviews'
-import Title from '@/app/restaurant/[slug]/components/TItle'
-import { PrismaClient } from '@prisma/client'
+import Description from "@/app/restaurant/[slug]/components/Description";
+import Images from "@/app/restaurant/[slug]/components/Images";
+import RestaurantNavBar from "@/app/restaurant/[slug]/components/NavBar";
+import Rating from "@/app/restaurant/[slug]/components/Rating";
+import Reviews from "@/app/restaurant/[slug]/components/Reviews";
+import Title from "@/app/restaurant/[slug]/components/TItle";
+import { PrismaClient, Review } from "@prisma/client";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 interface Restaurant {
-  id: string
-  name: string
-  images: string[]
-  description: string
-  slug: string
+  id: string;
+  name: string;
+  images: string[];
+  description: string;
+  slug: string;
+  reviews: Review[];
 }
 
 const fetchRestaurantBySlug = async (slug: string): Promise<Restaurant> => {
@@ -27,29 +28,30 @@ const fetchRestaurantBySlug = async (slug: string): Promise<Restaurant> => {
       images: true,
       description: true,
       slug: true,
+      reviews: true,
     },
-  })
+  });
 
-  if (!restaurant) throw new Error()
+  if (!restaurant) throw new Error();
 
-  return restaurant
-}
+  return restaurant;
+};
 
 interface Props {
-  params: { slug: string }
+  params: { slug: string };
 }
 
 export default async function RestaurantDetails({ params }: Props) {
-  const restaurant = await fetchRestaurantBySlug(params.slug)
+  const restaurant = await fetchRestaurantBySlug(params.slug);
 
   return (
     <>
       <RestaurantNavBar slug={params.slug} />
       <Title name={restaurant.name} />
-      <Rating />
+      <Rating reviews={restaurant.reviews} />
       <Description description={restaurant.description} />
       <Images images={restaurant.images} />
-      <Reviews />
+      <Reviews reviews={restaurant.reviews} />
     </>
-  )
+  );
 }

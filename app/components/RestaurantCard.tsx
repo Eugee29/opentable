@@ -1,9 +1,10 @@
-import Price from '@/app/components/Price'
-import { RestaurantCardType } from '@/app/page'
-import Link from 'next/link'
+import Price from "@/app/components/Price";
+import Stars from "@/app/components/Stars";
+import { RestaurantCardType } from "@/app/page";
+import Link from "next/link";
 
 interface Props {
-  restaurant: RestaurantCardType
+  restaurant: RestaurantCardType;
 }
 
 export default function RestaurantCard({ restaurant }: Props) {
@@ -19,9 +20,12 @@ export default function RestaurantCard({ restaurant }: Props) {
           <h1 className="mb-1 truncate text-lg font-bold leading-none">
             {restaurant.name}
           </h1>
-          <div className="mb-1 flex items-start text-sm">
-            <div className="mb-2 flex">*****</div>
-            <p className="ml-2">77 reviews</p>
+          <div className="mb-1 flex items-center text-sm">
+            <Stars reviews={restaurant.reviews} />
+            <p className="ml-2">
+              {restaurant.reviews.length} review
+              {restaurant.reviews.length > 1 ? "s" : ""}
+            </p>
           </div>
           <div className="mb-2 flex text-sm font-light capitalize">
             <span className="mr-3">{restaurant.cuisine.name}</span>
@@ -32,5 +36,5 @@ export default function RestaurantCard({ restaurant }: Props) {
         </div>
       </div>
     </Link>
-  )
+  );
 }

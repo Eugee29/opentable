@@ -27,23 +27,10 @@ const fetchRestaurants = (
     slug: true,
     location: true,
     price: true,
+    reviews: true,
   };
 
   if (!searchParams.location) return prisma.restaurant.findMany({ select });
-
-  // const where: any = {};
-
-  // if (searchParams.location)
-  //   where.location = {
-  //     name: { equals: searchParams.location, mode: "insensitive" },
-  //   };
-
-  // if (searchParams.cuisine)
-  //   where.cuisine = {
-  //     name: { equals: searchParams.cuisine, mode: "insensitive" },
-  //   };
-
-  // if (searchParams.price) where.price = { equals: searchParams.price };
 
   return prisma.restaurant.findMany({
     where: {

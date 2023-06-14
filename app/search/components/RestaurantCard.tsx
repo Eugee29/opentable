@@ -1,5 +1,6 @@
 import Price from "@/app/components/Price";
 import { RestaurantCardType } from "@/app/page";
+import { calculateReviewRatingAverage } from "@/utils/calculateReviewRatingAverage";
 import Link from "next/link";
 
 interface Props {
@@ -7,6 +8,14 @@ interface Props {
 }
 
 export default function RestaurantCard({ restaurant }: Props) {
+  const renderRatingText = () => {
+    const rating = calculateReviewRatingAverage(restaurant.reviews);
+    if (rating > 4) return "Awesome";
+    if (rating <= 4 && rating > 3) return "Good";
+    if (rating <= 3 && rating > 0) return "Average";
+    else return "";
+  };
+
   return (
     <div className="flex">
       <img
@@ -20,7 +29,7 @@ export default function RestaurantCard({ restaurant }: Props) {
         </h2>
         <div className="flex items-start">
           <div className="flex">*****</div>
-          <p className="ml-2 text-sm font-medium">Awesome</p>
+          <p className="ml-2 text-sm font-medium">{renderRatingText()}</p>
         </div>
         <div className="mb-9">
           <div className="flex text-sm">
