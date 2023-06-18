@@ -1,14 +1,14 @@
-import NavBar from '@/app/components/NavBar'
-import './globals.css'
-import { ReactNode } from 'react'
+import NavBar from "@/app/components/NavBar";
+import "./globals.css";
+import { ReactNode } from "react";
 
 export const metadata = {
-  title: { default: 'OpenTable', template: '%s | OpenTable' },
-  description: 'Book a restaurant',
-}
+  title: { default: "OpenTable", template: "%s | OpenTable" },
+  description: "Book a restaurant",
+};
 
 interface Props {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export default function RootLayout({ children }: Props) {
@@ -23,5 +23,5 @@ export default function RootLayout({ children }: Props) {
         </main>
       </body>
     </html>
-  )
+  );
 }

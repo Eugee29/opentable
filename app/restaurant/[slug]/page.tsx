@@ -4,9 +4,8 @@ import RestaurantNavBar from "@/app/restaurant/[slug]/components/NavBar";
 import Rating from "@/app/restaurant/[slug]/components/Rating";
 import Reviews from "@/app/restaurant/[slug]/components/Reviews";
 import Title from "@/app/restaurant/[slug]/components/TItle";
-import { PrismaClient, Review } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from "@/utils/prisma";
+import { Review } from "@prisma/client";
 
 interface Restaurant {
   id: string;

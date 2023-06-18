@@ -2,17 +2,13 @@ import fullStar from "@/public/icons/full-star.png";
 import halfStar from "@/public/icons/half-star.png";
 import emptyStar from "@/public/icons/empty-star.png";
 import Image from "next/image";
-import { Review } from "@prisma/client";
-import { calculateReviewRatingAverage } from "@/utils/calculateReviewRatingAverage";
 
 interface Props {
-  reviews: Review[];
+  rating: number;
   className?: string;
 }
 
-export default function Stars({ reviews, className = "" }: Props) {
-  const rating = calculateReviewRatingAverage(reviews);
-
+export default function Stars({ rating, className = "" }: Props) {
   const getStars = () => {
     const stars = [];
     for (let i = 0; i < 5; i++) {
@@ -29,9 +25,16 @@ export default function Stars({ reviews, className = "" }: Props) {
 
   return (
     <ul className={`flex items-center gap-1 ${className}`}>
-      {getStars().map((star) => (
-        <li>
-          <Image className="h-4 w-4" src={star} alt={`${star}`} />
+      {getStars().map((star, i) => (
+        <li key={i}>
+          <Image
+            className="h-4 w-4"
+            src={star}
+            alt={`${star}`}
+            width={0}
+            height={0}
+            sizes="100vw"
+          />
         </li>
       ))}
     </ul>

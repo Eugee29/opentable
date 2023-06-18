@@ -92,14 +92,14 @@ export default function SearchSideBar({
       <div className="mt-3 pb-4">
         <h1 className="mb-2">Price</h1>
         <ul className="flex">
-          {prices.map(({ price, label }) => (
+          {prices.map(({ price, label }, i) => (
             <li
+              key={price}
               className={`flex-1 border text-center font-light first:rounded-l last:rounded-r ${
                 searchParams.price?.toLowerCase() === price.toLowerCase()
                   ? "border-1 border-red-600 text-red-600"
                   : "first:border-r-0 last:border-l-0"
               }`}
-              key={price}
             >
               <Link
                 className="block p-2"

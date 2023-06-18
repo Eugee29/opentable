@@ -1,4 +1,5 @@
 import Price from "@/app/components/Price";
+import Stars from "@/app/components/Stars";
 import { RestaurantCardType } from "@/app/page";
 import { calculateReviewRatingAverage } from "@/utils/calculateReviewRatingAverage";
 import Link from "next/link";
@@ -16,6 +17,8 @@ export default function RestaurantCard({ restaurant }: Props) {
     else return "";
   };
 
+  const rating = calculateReviewRatingAverage(restaurant.reviews);
+
   return (
     <div className="flex">
       <img
@@ -27,8 +30,8 @@ export default function RestaurantCard({ restaurant }: Props) {
         <h2 className="mb-1 text-lg font-bold text-[#247f9e]">
           {restaurant.name}
         </h2>
-        <div className="flex items-start">
-          <div className="flex">*****</div>
+        <div className="flex items-center">
+          <Stars rating={rating} />
           <p className="ml-2 text-sm font-medium">{renderRatingText()}</p>
         </div>
         <div className="mb-9">

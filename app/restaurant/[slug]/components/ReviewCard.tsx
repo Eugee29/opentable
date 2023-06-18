@@ -1,3 +1,4 @@
+import Stars from "@/app/components/Stars";
 import { Review } from "@prisma/client";
 
 interface Props {
@@ -20,7 +21,7 @@ export default function ReviewCard({ review }: Props) {
         </div>
         <div className="ml-10 w-5/6">
           <div className="flex items-center">
-            <div className="mr-5 flex">*****</div>
+            <Stars className="mr-5 flex" rating={review.rating} />
           </div>
           <div className="mt-5">
             <p>{review.text}</p>

@@ -1,14 +1,13 @@
 import Header from "@/app/search/components/Header";
 import RestaurantCard from "@/app/search/components/RestaurantCard";
 import SearchSideBar from "@/app/search/components/SearchSideBar";
-import { PRICE, PrismaClient } from "@prisma/client";
+import { PRICE } from "@prisma/client";
 import { RestaurantCardType } from "../page";
+import prisma from "@/utils/prisma";
 
 export const metadata = {
   title: "Search",
 };
-
-const prisma = new PrismaClient();
 
 interface searchParams {
   location?: string;
