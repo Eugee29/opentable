@@ -6,6 +6,7 @@ import Reviews from "@/app/restaurant/[slug]/components/Reviews";
 import Title from "@/app/restaurant/[slug]/components/TItle";
 import prisma from "@/utils/prisma";
 import { Review } from "@prisma/client";
+import { notFound } from "next/navigation";
 
 interface Restaurant {
   id: string;
@@ -31,7 +32,7 @@ const fetchRestaurantBySlug = async (slug: string): Promise<Restaurant> => {
     },
   });
 
-  if (!restaurant) throw new Error();
+  if (!restaurant) notFound();
 
   return restaurant;
 };

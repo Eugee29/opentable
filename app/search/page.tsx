@@ -67,7 +67,7 @@ export default async function Search({ searchParams }: Props) {
     return (
       <ul>
         {restaurants.map((restaurant) => (
-          <li className="border-b py-5" key={restaurant.id}>
+          <li key={restaurant.id} className="border-b py-5">
             <RestaurantCard restaurant={restaurant} />
           </li>
         ))}

@@ -12,11 +12,10 @@ export default function Menu({ menu }: Props) {
         <div className="mb-1 mt-4 pb-1">
           <h1 className="text-2xl font-bold">Menu</h1>
         </div>
-        {/* <ul className="flex flex-wrap justify-center gap-4"> */}
         {menu.length ? (
           <ul className="grid grid-cols-2 gap-4">
             {menu.map((item) => (
-              <li className="inline" key={item.id}>
+              <li key={item.id} className="inline">
                 <MenuCard item={item} />
               </li>
             ))}
