@@ -24,7 +24,7 @@ export default function SearchBar() {
         value={location}
         onChange={(e) => setLocation(e.target.value)}
       />
-      <button className="rounded bg-[#da3743] px-11 font-bold text-white transition-all duration-300 hover:brightness-75">
+      <button className="rounded bg-[#da3743] px-11 font-bold text-white transition-all duration-300 hover:bg-[#b8222d]">
         Let's go
       </button>
     </form>
