@@ -31,9 +31,9 @@ export default function Form() {
         placeholder="Add a special request (optional)"
         rows={1}
       />
-      <button className="h-[50px] w-full rounded bg-[#da3743] font-bold text-white transition-colors duration-300 hover:bg-[#b8222d]">
+      <button className="h-[50px] w-full rounded bg-opentable-red-100 font-bold text-white transition-colors duration-300 hover:bg-[#b8222d]">
         Complete reservation
       </button>
     </form>
-  )
+  );
 }

@@ -3,7 +3,7 @@ import RestaurantCard from "@/app/search/components/RestaurantCard";
 import SearchSideBar from "@/app/search/components/SearchSideBar";
 import { PRICE } from "@prisma/client";
 import { RestaurantCardType } from "../page";
-import prisma from "@/utils/prisma";
+import prisma from "@/prisma/client";
 
 export const metadata = {
   title: "Search",

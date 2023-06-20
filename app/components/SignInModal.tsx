@@ -1,4 +1,11 @@
+import Button from "@/app/components/Button";
+import Input from "@/app/components/Input";
 import TransitionModal from "@/app/components/TransitionModal";
+import { AuthContext } from "@/app/context/AuthContext";
+import useAuth from "@/hooks/useAuth";
+import { CircularProgress } from "@mui/material";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { PulseLoader } from "react-spinners";
 
 interface Props {
   open: boolean;
@@ -6,41 +13,53 @@ interface Props {
 }
 
 export default function SignInModal({ open, onClose }: Props) {
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { signIn } = useAuth();
+  const { loading, data, error } = useContext(AuthContext);
+
+  const handleSubmit = (ev: FormEvent<HTMLFormElement>) => {
+    ev.preventDefault();
+    signIn(inputs);
+  };
+
+  const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
+    setInputs({ ...inputs, [ev.target.name]: ev.target.value });
+  };
+
   return (
     <TransitionModal
-      aria-labelledby="sign-in-modal"
-      aria-describedby="sign-in-modal"
       open={open}
       onClose={onClose}
       title="Sign In"
       subtitle="Log Into Your Account"
     >
-      <form className="grid grid-cols-2 gap-4">
-        <input
-          className="rounded border p-3"
-          type="text"
-          placeholder="First Name"
-        />
-        <input
-          className="rounded border p-3"
-          type="text"
-          placeholder="Last Name"
-        />
-        <input
-          className="col-span-2 rounded border p-3"
+      <form className="grid grid-cols-2 gap-4" onSubmit={handleSubmit}>
+        <Input
+          className="col-span-2"
           type="email"
           placeholder="Email"
+          name="email"
+          value={inputs.email}
+          onChange={handleChange}
+          required
         />
-        <input className="rounded border p-3" type="text" placeholder="Phone" />
-        <input className="rounded border p-3" type="text" placeholder="City" />
-        <input
-          className="col-span-2 rounded border p-3"
+
+        <Input
+          className="col-span-2"
           type="password"
           placeholder="Password"
+          name="password"
+          value={inputs.password}
+          onChange={handleChange}
+          required
         />
-        <button className="col-span-2 rounded bg-[#da3743] py-3 font-bold text-white transition-all duration-300 hover:bg-[#b8222d]">
-          Sign In
-        </button>
+        <Button disabled={!inputs.email || !inputs.password || loading}>
+          {loading ? <PulseLoader color="white" size={8} /> : "Sign In"}
+        </Button>
       </form>
     </TransitionModal>
   );

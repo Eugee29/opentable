@@ -27,10 +27,10 @@ export default function ReservationCard() {
         </div>
       </div>
       <div className="mt-5">
-        <button className="h-11 w-full rounded bg-[#da3743] px-4 font-bold text-white transition-colors duration-300 hover:bg-[#b8222d]">
+        <button className="h-11 w-full rounded bg-opentable-red-100 px-4 font-bold text-white transition-colors duration-300 hover:bg-opentable-red-200">
           Find a time
         </button>
       </div>
     </section>
-  )
+  );
 }

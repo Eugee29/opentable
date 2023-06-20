@@ -9,8 +9,6 @@ interface Props {
   title?: string;
   subtitle?: string;
   children?: ReactNode;
-  "aria-labelledby"?: string;
-  "aria-describedby"?: string;
 }
 
 export default function TransitionModal({
@@ -19,13 +17,9 @@ export default function TransitionModal({
   title,
   subtitle,
   children,
-  "aria-labelledby": labelledby,
-  "aria-describedby": describedBy,
 }: Props) {
   return (
     <Modal
-      aria-labelledby={labelledby}
-      aria-describedby={describedBy}
       open={open}
       onClose={onClose}
       closeAfterTransition
@@ -37,7 +31,7 @@ export default function TransitionModal({
       }}
     >
       <Fade in={open}>
-        <div className="absolute left-1/2 top-1/2 h-3/4 w-96 -translate-x-1/2 -translate-y-1/2 rounded bg-white p-4 shadow-lg">
+        <div className="absolute left-1/2 top-1/2 h-2/3 w-96 -translate-x-1/2 -translate-y-1/2 rounded bg-white p-4 shadow-lg">
           {title && (
             <h1 className="mb-4 border-b pb-4 text-center text-sm font-bold uppercase">
               {title}
