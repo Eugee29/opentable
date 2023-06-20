@@ -3,7 +3,6 @@ import Input from "@/app/components/Input";
 import TransitionModal from "@/app/components/TransitionModal";
 import { AuthContext } from "@/app/context/AuthContext";
 import useAuth from "@/hooks/useAuth";
-import { CircularProgress } from "@mui/material";
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { PulseLoader } from "react-spinners";
 
