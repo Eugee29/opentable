@@ -1,4 +1,4 @@
-import prisma from "@/prisma/client";
+import prisma from "@/lib/prisma";
 import * as jose from "jose";
 import { NextResponse } from "next/server";
 

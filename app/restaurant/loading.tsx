@@ -2,9 +2,9 @@ export default function Loading() {
   return (
     <main>
       <div className="h-96 animate-pulse overflow-hidden bg-slate-200">
-        <div className={`h-full bg-center`} />
+        <div className="h-full bg-center" />
       </div>
-      <div className="0  m-auto -mt-9 flex w-2/3 items-start justify-between">
+      <div className="m-auto -mt-9 flex w-2/3 items-start justify-between">
         <div className="w-[70%] rounded bg-white p-3 shadow">
           <nav className="text-reg flex border-b pb-2">
             <h4 className="mr-7">Overview</h4>

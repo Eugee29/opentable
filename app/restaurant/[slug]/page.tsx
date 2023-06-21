@@ -4,7 +4,7 @@ import RestaurantNavBar from "@/app/restaurant/[slug]/components/NavBar";
 import Rating from "@/app/restaurant/[slug]/components/Rating";
 import Reviews from "@/app/restaurant/[slug]/components/Reviews";
 import Title from "@/app/restaurant/[slug]/components/TItle";
-import prisma from "@/prisma/client";
+import prisma from "@/lib/prisma";
 import { Review } from "@prisma/client";
 import { notFound } from "next/navigation";
 
