@@ -1,7 +1,11 @@
 import Button from "@/app/components/Button";
 import Input from "@/app/components/Input";
 import TransitionModal from "@/app/components/TransitionModal";
-import { ChangeEvent, useState } from "react";
+import { AuthContext } from "@/app/context/AuthContext";
+import useAuth from "@/hooks/useAuth";
+import { Alert } from "@mui/material";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { PulseLoader } from "react-spinners";
 
 interface Props {
   open: boolean;
@@ -18,6 +22,14 @@ export default function SignUpModal({ open, onClose }: Props) {
     password: "",
   });
 
+  const { signUp } = useAuth();
+  const { loading, error } = useContext(AuthContext);
+
+  const handleSubmit = (ev: FormEvent<HTMLFormElement>) => {
+    ev.preventDefault();
+    signUp(inputs, onClose);
+  };
+
   const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
     setInputs({ ...inputs, [ev.target.name]: ev.target.value });
   };
@@ -29,11 +41,16 @@ export default function SignUpModal({ open, onClose }: Props) {
       title="Sign Up"
       subtitle="Create Your OpenTable Account"
     >
-      <form className="grid grid-cols-2 gap-4">
+      <form
+        className="mb-4 grid grid-cols-2 gap-4"
+        onSubmit={handleSubmit}
+        name="signUp"
+      >
         <Input
           type="text"
           placeholder="First Name"
           name="firstName"
+          autoComplete="given-name"
           value={inputs.firstName}
           onChange={handleChange}
         />
@@ -41,6 +58,7 @@ export default function SignUpModal({ open, onClose }: Props) {
           type="text"
           placeholder="Last Name"
           name="lastName"
+          autoComplete="family-name"
           value={inputs.lastName}
           onChange={handleChange}
         />
@@ -49,6 +67,7 @@ export default function SignUpModal({ open, onClose }: Props) {
           type="email"
           placeholder="Email"
           name="email"
+          autoComplete="email"
           value={inputs.email}
           onChange={handleChange}
         />
@@ -56,6 +75,7 @@ export default function SignUpModal({ open, onClose }: Props) {
           type="text"
           placeholder="Phone"
           name="phone"
+          autoComplete="phone"
           value={inputs.phone}
           onChange={handleChange}
         />
@@ -63,6 +83,7 @@ export default function SignUpModal({ open, onClose }: Props) {
           type="text"
           placeholder="City"
           name="city"
+          autoComplete="street-address"
           value={inputs.city}
           onChange={handleChange}
         />
@@ -76,6 +97,7 @@ export default function SignUpModal({ open, onClose }: Props) {
         />
         <Button
           disabled={
+            loading ||
             !inputs.email ||
             !inputs.password ||
             !inputs.city ||
@@ -84,9 +106,10 @@ export default function SignUpModal({ open, onClose }: Props) {
             !inputs.phone
           }
         >
-          Sign Up
+          {loading ? <PulseLoader color="white" size={8} /> : "Sign Up"}
         </Button>
       </form>
+      {error && <Alert severity="error">{error}</Alert>}
     </TransitionModal>
   );
 }

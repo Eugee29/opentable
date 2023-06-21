@@ -2,7 +2,10 @@
 
 import SignInModal from "@/app/components/SignInModal";
 import SignUpModal from "@/app/components/SignUpModal";
-import { useState } from "react";
+import { AuthContext } from "@/app/context/AuthContext";
+import useAuth from "@/hooks/useAuth";
+import { useContext, useState } from "react";
+import { PulseLoader } from "react-spinners";
 
 export default function AuthButtons() {
   const [signInOpen, setSignInOpen] = useState(false);
@@ -14,25 +17,42 @@ export default function AuthButtons() {
   const handleSignUpClose = () => setSignUpOpen(false);
   const handleSignUpOpen = () => setSignUpOpen(true);
 
-  return (
-    <>
-      <SignInModal open={signInOpen} onClose={handleSignInClose} />
-      <SignUpModal open={signUpOpen} onClose={handleSignUpClose} />
+  const { user, loading } = useContext(AuthContext);
+  const { signOut } = useAuth();
 
-      <div className="stretch flex gap-2">
-        <button
-          className="h-full rounded border p-1 px-4"
-          onClick={handleSingInOpen}
-        >
-          Sign in
-        </button>
-        <button
-          className="h-full rounded bg-[#237F9E] p-1 px-4 text-white"
-          onClick={handleSignUpOpen}
-        >
-          Sign up
-        </button>
-      </div>
-    </>
+  return (
+    <div className="flex h-full gap-2">
+      {loading ? (
+        <div className="h-full w-24 animate-pulse rounded bg-slate-200"></div>
+      ) : (
+        <>
+          {user ? (
+            <button
+              className="h-full rounded border p-1 px-4"
+              onClick={signOut}
+            >
+              Sign out
+            </button>
+          ) : (
+            <>
+              <SignInModal open={signInOpen} onClose={handleSignInClose} />
+              <SignUpModal open={signUpOpen} onClose={handleSignUpClose} />
+              <button
+                className="h-full rounded border p-1 px-4"
+                onClick={handleSingInOpen}
+              >
+                Sign in
+              </button>
+              <button
+                className="h-full rounded bg-[#237F9E] p-1 px-4 text-white"
+                onClick={handleSignUpOpen}
+              >
+                Sign up
+              </button>
+            </>
+          )}
+        </>
+      )}
+    </div>
   );
 }

@@ -82,5 +82,21 @@ export async function POST(request: Request) {
     .setExpirationTime("24h")
     .sign(secret);
 
-  return NextResponse.json({ token }, { status: 201 });
+  const ONE_DAY = 60 * 60 * 24;
+
+  return NextResponse.json(
+    {
+      firsName: user.first_name,
+      lastName: user.last_name,
+      email: user.email,
+      phone: user.phone,
+      city: user.city,
+    },
+    {
+      status: 201,
+      headers: {
+        "Set-Cookie": `jwt=${token}; Max-Age=${ONE_DAY}; Path=/`,
+      },
+    }
+  );
 }

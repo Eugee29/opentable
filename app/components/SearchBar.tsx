@@ -25,6 +25,7 @@ export default function SearchBar() {
         type="text"
         value={location}
         onChange={(e) => setLocation(e.target.value)}
+        name="location"
       />
       <Button className="rounded bg-opentable-red-100 px-11 font-bold text-white transition-colors duration-300 hover:bg-opentable-red-200">
         Let's go
