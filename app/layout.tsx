@@ -1,7 +1,10 @@
 import NavBar from "@/app/components/NavBar";
-import "./globals.css";
-import { ReactNode } from "react";
 import AuthProvider from "@/app/context/AuthContext";
+import { Inter } from "next/font/google";
+import { ReactNode } from "react";
+import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: { default: "OpenTable", template: "%s | OpenTable" },
@@ -15,7 +18,9 @@ interface Props {
 export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-[#F7F7F7] text-[#2d333f]">
+      <body
+        className={`${inter.className} min-h-screen bg-[#F7F7F7] text-[#2d333f]`}
+      >
         <AuthProvider>
           <div className="m-auto flex min-h-screen max-w-[100rem] flex-col bg-white">
             <NavBar />

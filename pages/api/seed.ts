@@ -1,14 +1,17 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { PRICE } from "@prisma/client";
-import prisma from "@/lib/prisma";
+import { PRICE, PrismaClient } from "@prisma/client";
 
+const prisma = new PrismaClient();
 type Data = {
   name: string;
 };
 
-export async function GET(req: NextApiRequest, res: NextApiResponse<Data>) {
-  //   await prisma.table.deleteMany();
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
+  await prisma.table.deleteMany();
   await prisma.review.deleteMany();
   await prisma.item.deleteMany();
   await prisma.restaurant.deleteMany();
@@ -28,18 +31,18 @@ export async function GET(req: NextApiRequest, res: NextApiResponse<Data>) {
   const cuisines = await prisma.cuisine.findMany();
 
   const indianCuisineId =
-    cuisines.find((cuisine) => cuisine.name === "indian")?.id || "1";
+    cuisines.find((cuisine) => cuisine.name === "indian")?.id || 1;
   const mexicanCuisineId =
-    cuisines.find((cuisine) => cuisine.name === "mexican")?.id || "1";
+    cuisines.find((cuisine) => cuisine.name === "mexican")?.id || 1;
   const italianCuisineId =
-    cuisines.find((cuisine) => cuisine.name === "italian")?.id || "1";
+    cuisines.find((cuisine) => cuisine.name === "italian")?.id || 1;
 
   const ottawaLocationId =
-    locations.find((location) => location.name === "ottawa")?.id || "1";
+    locations.find((location) => location.name === "ottawa")?.id || 1;
   const torontoLocationId =
-    locations.find((location) => location.name === "toronto")?.id || "1";
+    locations.find((location) => location.name === "toronto")?.id || 1;
   const niagaraLocationId =
-    locations.find((location) => location.name === "niagara")?.id || "1";
+    locations.find((location) => location.name === "niagara")?.id || 1;
 
   await prisma.restaurant.createMany({
     data: [
@@ -518,51 +521,49 @@ export async function GET(req: NextApiRequest, res: NextApiResponse<Data>) {
 
   const vivaanId =
     restaurants.find((restaurant) => restaurant.name === "Vivaan - fine Indian")
-      ?.id || "1";
+      ?.id || 1;
   const RamaKrishnaId =
     restaurants.find((restaurant) => restaurant.name === "RamaKrishna Indian")
-      ?.id || "1";
+      ?.id || 1;
   const coconutLagoonId =
     restaurants.find((restaurant) => restaurant.name === "Coconut Lagoon")
-      ?.id || "1";
+      ?.id || 1;
   const lastTrainToDelhiId =
     restaurants.find((restaurant) => restaurant.name === "Last Train to Delhi")
-      ?.id || "1";
+      ?.id || 1;
   const adrakYorkvilleId =
     restaurants.find((restaurant) => restaurant.name === "Adrak Yorkville")
-      ?.id || "1";
+      ?.id || 1;
   const curryishTavernId =
     restaurants.find((restaurant) => restaurant.name === "Curryish Tavern")
-      ?.id || "1";
+      ?.id || 1;
   const utsavId =
-    restaurants.find((restaurant) => restaurant.name === "Utsav")?.id || "1";
+    restaurants.find((restaurant) => restaurant.name === "Utsav")?.id || 1;
   const pukkaId =
-    restaurants.find((restaurant) => restaurant.name === "Pukka")?.id || "1";
+    restaurants.find((restaurant) => restaurant.name === "Pukka")?.id || 1;
   const kamasutraIndianId =
     restaurants.find((restaurant) => restaurant.name === "Kamasutra Indian")
-      ?.id || "1";
+      ?.id || 1;
   const eldoradoTacoId =
     restaurants.find((restaurant) => restaurant.name === "Eldorado Taco")?.id ||
-    "1";
+    1;
   const laBartolaId =
-    restaurants.find((restaurant) => restaurant.name === "La Bartola")?.id ||
-    "1";
+    restaurants.find((restaurant) => restaurant.name === "La Bartola")?.id || 1;
   const elCatrinId =
-    restaurants.find((restaurant) => restaurant.name === "El Catrin")?.id ||
-    "1";
+    restaurants.find((restaurant) => restaurant.name === "El Catrin")?.id || 1;
   const mariachisId =
     restaurants.find((restaurant) => restaurant.name === "3 Mariachis")?.id ||
-    "1";
+    1;
   const canoRestaurantId =
     restaurants.find((restaurant) => restaurant.name === "Cano Restaurant")
-      ?.id || "1";
+      ?.id || 1;
   const bluRistoranteId =
     restaurants.find((restaurant) => restaurant.name === "Blu Ristorante")
-      ?.id || "1";
+      ?.id || 1;
   const stelvioId =
-    restaurants.find((restaurant) => restaurant.name === "Stelvio")?.id || "1";
+    restaurants.find((restaurant) => restaurant.name === "Stelvio")?.id || 1;
   const sofiaId =
-    restaurants.find((restaurant) => restaurant.name === "Sofia")?.id || "1";
+    restaurants.find((restaurant) => restaurant.name === "Sofia")?.id || 1;
 
   await prisma.item.createMany({
     data: [
@@ -1304,22 +1305,22 @@ export async function GET(req: NextApiRequest, res: NextApiResponse<Data>) {
     ],
   });
 
-  //   await prisma.table.createMany({
-  //     data: [
-  //       {
-  //         restaurant_id: vivaanId,
-  //         seats: 4,
-  //       },
-  //       {
-  //         restaurant_id: vivaanId,
-  //         seats: 4,
-  //       },
-  //       {
-  //         restaurant_id: vivaanId,
-  //         seats: 2,
-  //       },
-  //     ],
-  //   });
+  await prisma.table.createMany({
+    data: [
+      {
+        restaurant_id: vivaanId,
+        seats: 4,
+      },
+      {
+        restaurant_id: vivaanId,
+        seats: 4,
+      },
+      {
+        restaurant_id: vivaanId,
+        seats: 2,
+      },
+    ],
+  });
 
   res.status(200).json({ name: "hello" });
 }
